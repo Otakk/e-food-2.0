@@ -1,0 +1,74 @@
+{% extends 'Dashboard/baseAdmin.html.twig' %}
+
+{% block title %}Liste catégories
+{% endblock %}
+
+{% block body %}
+	<div class="container mt-2">
+		<h1>Liste des catégories</h1>
+		{% for message in app.flashes('success') %}
+
+
+			<div class="alert alert-success col-8 mx-auto text-center my-4 d-none" id="alertMessage">
+				{{message}}
+			</div>
+			{% block javascripts %}
+				<script>
+					var div1 = document.getElementById('alertMessage');
+
+showMessage(div1.innerHTML)
+				</script>
+
+			{% endblock %}
+
+		{% endfor %}
+		<a href="{{ path('app_admin_categorie_new') }}" class="btn btn-success">Nouvelle catégorie</a>
+
+		<table class="table text-center align-middle">
+			<thead>
+				<tr>
+					<th>Id</th>
+					<th>Titre</th>
+					<th>Description</th>
+					<th>Image</th>
+					<th>Modifier</th>
+					<th>Supprimer</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for categorie in categories %}
+					<tr>
+						<td>{{ categorie.id }}</td>
+						<td>{{ categorie.titre }}</td>
+						<td>{{ categorie.description }}</td>
+						<td>
+							{% if categorie.image %}
+
+								<img src="{{asset("images/categories/" ~ categorie.image )}}" alt="{{ categorie.titre }}">
+							{% else %}
+								<img src="{{asset("images/logo.png")}}" alt="{{ categorie.titre }}">
+							{% endif %}
+						</td>
+						<td>
+
+							<a href="{{ path('app_admin_categorie_edit', {'id': categorie.id}) }}">
+								<i class="bi bi-pencil" style="font-size: 2rem; color: blue;"></i>
+							</a>
+						</td>
+						<td>{{ include('admin_categorie/_delete_form.html.twig') }}</td>
+					</tr>
+				{% else %}
+					<tr>
+						<td colspan="4">Pas de données disponible
+						</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+
+		{# Ajouter la pagination a notre page  #}
+		<div class="navigation d-flex justify-content-center mt-5">
+			{{ knp_pagination_render(categories) }}
+		</div>
+	</div>
+{% endblock %}

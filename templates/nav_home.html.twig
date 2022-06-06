@@ -1,0 +1,89 @@
+<nav>
+	<div id="theBigOne">
+		<div id="theInnerOne">
+			<div class='nav'>
+				<img id='logo' src="{{asset('images/logo.png')}}" alt="le grand gourmet logo">
+				<div id='nav_left'>
+					<a class='marge disabled nav_link' href="#">Home</a>
+					<div id='categorie'>
+						<p class='nav_link'>Catégorie</p>
+						<div id="dropdown_categorie">
+							<i id='drop' class="fa-solid fa-caret-down"></i>
+						</div>
+
+						<div id='modal_categorie'>	
+							{% for categorie in categories %}
+								
+							<div class='div_modal_hover_categorie'>
+								<a class='modal_btn_categorie' href="{{path('app_categorie', {'id': categorie.id})}}">{{categorie.titre}}</a>
+							</div>
+							{% endfor %}
+		
+				
+						</div>
+					</div>
+				
+
+				</div>
+
+				<div id='menu'>
+					<i class="fa-solid fa-bars fa-2xl"></i>
+				</div>
+			</div>
+
+			<div class="menu_modal">
+				<div id='menu_header'>
+					<i id='menu_close' class="fa-solid fa-plus fa-2xl"></i>
+				</div>
+				<div id='menu_main'>
+					<a class='nav_link_modal disabled' href="#">Home</a>
+					<div id='dropdown_categorie'>
+						<p class='nav_link_modal'>Catégorie</p>
+						<div id="dropdown_categorie_modal">
+							<i id='drop_modal' class="fa-solid fa-caret-down"></i>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class='nav connexionAndCart'>
+      
+				{% if app.user %}
+
+					<div id='modal'>
+
+						{% if is_granted('ROLE_ADMIN') %}
+							<div class='div_modal_hover'>
+								<a class='modal_btn' href="{{path('app_admin_dashboard')}}">Dashboard</a>
+							</div>
+						{% endif %}
+
+						<div class='div_modal_hover'>
+							<a class='modal_btn' href="{{path('profile_index')}}">Profil</a>
+						</div>
+						
+						<hr style='background-color:rgb(226, 226, 226);width:100%;margin: 12px 0 5px 0'>
+						<div class='div_modal_hover'>
+							<a class='modal_btn disconnect' href="{{path('app_logout')}}">Deconnexion</a>
+						</div>
+					</div>
+
+					<div>
+						<strong>{{app.user.nom|capitalize}}</strong>
+						<div id="dropdown">
+							<i id='drop' class="fa-solid fa-caret-down"></i>
+						</div>
+					</div>
+
+				{% else %}
+					<a class='marge' id='connexion' href="{{path('app_login')}}">Connexion</a>
+				{% endif %}
+
+				<a class='marge cart_container'>
+					<i id="cart" class="fa-solid fa-2xl fa-basket-shopping"></i>
+				</a>
+				
+			</div>
+		</div>
+	</div>
+</nav>

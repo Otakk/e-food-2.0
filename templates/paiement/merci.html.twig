@@ -1,0 +1,62 @@
+{# {% extends 'base.html.twig' %}
+
+{% block title %}Hello PaiementController!{% endblock %}
+
+{% block body %}
+ 
+ <div class="col-md-12">
+        <div class="jumbotron text-center">
+            <h1 class="display-3">Merci!</h1>
+            <p class="lead"><strong>Votre commande a été traitée avec succès</strong></p>
+            <hr>
+            <p>
+                Vous rencontrez un problème? <a href="#">Nous contacter</a>
+            </p>
+            <p class="lead">
+                <a class="btn btn-primary btn-sm" href="{{ path('app_produit') }}" role="button">Continuer vers la boutique</a>
+            </p>
+        </div>
+
+    </div>
+
+{% endblock %} #}
+
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ parent()}} || Merci
+{% endblock %}
+
+{% block stylesheets %}
+	<link rel="stylesheet" href="{{asset('css/paiement.css')}}">
+{% endblock %}
+
+{% block body %}
+
+	
+	<div class="content">
+
+		<div class="body_content">
+			<div class="formuleMerci">
+
+				<h2 class="">Merci!</h2>
+				<p class="lead">
+					<strong>Votre commande a été traitée avec succès</strong>
+				</p>
+				<hr>
+				<p>
+					Vous rencontrez un problème?
+					<a href="#">Nous contacter</a>
+				</p>
+				<div class="btn_merci">
+					<a class="btnj" href="{{ path('app_produit') }}" role="button">Notre catalogue</a>
+				</div>
+
+			</div>
+
+		</div>
+	</div>
+    
+
+{% endblock %}
+
+

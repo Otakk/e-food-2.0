@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{'css/login.css'}}">
+{% endblock %}
+
+
+{% block title %}Log in!{% endblock %}
+
+{% block body %}
+
+    <div id="login_container">
+    
+        <div class="login_form">
+
+
+            <form method="POST">
+                <div id='login_form_container'>
+                {% if error %}
+                    <div class="alert alert-danger mt-4">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                {% endif %}
+
+                {% if app.user %}
+                    <div class="mb-3">Vous êtes connecté en tant que {{ app.user.username }}, 
+                        <a href="{{ path('app_logout') }}">Déconnexion</a>
+                    </div>
+                {% endif %}
+
+                    <img id='user_icon' src="{{asset('/images/user.png')}}" alt="user icon">
+
+                    <div id='form_container'>
+
+                        <input class="login_input" type="text" type="email" value="{{ last_username }}" name="email" placeholder="Email" autocomplete="email" required autofocus>
+                        <input class="login_input" type="password" name="password" id="inputPassword" placeholder="Mot de passe" autocomplete="current-password" required>
+                        <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
+                        <div id="profil_btn">
+                            <input type="submit" value="Connexion" class="profil_btn_input">
+                            <p id='noAccount'>Pas de Compte ?</p>
+                            <button onclick='window.location.href="{{path('app_register')}}"' class="profil_btn_input">S'inscrire</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

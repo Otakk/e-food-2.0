@@ -1,0 +1,14 @@
+{% extends 'Dashboard/baseAdmin.html.twig' %}
+
+
+{% block title %}Nouveau utilisateur{% endblock %}
+
+{% block body %}
+    <div class="container">
+    <h1>Nouveau utilisateur</h1>
+
+    <a href="{{ path('app_admin_user_index') }}">Retour</a>
+    
+    {{ include('admin_user/_form.html.twig') }}
+
+{% endblock %}

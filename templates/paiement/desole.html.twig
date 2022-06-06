@@ -1,0 +1,21 @@
+ {% extends 'base.html.twig' %}
+
+{% block title %}Paiement refusé{% endblock %}
+
+{% block body %}
+ 
+ <div class="col-md-12">
+        <div class="jumbotron text-center">
+            <h1 class="display-3">Desolé !</h1>
+            <p class="lead"><strong>Paiement refusé </strong></p>
+            <hr>
+            <p>
+                Vous rencontrez un problème? <a href="#">Nous contacter</a>
+            </p>
+            <p class="lead">
+                <a class="btn btn-primary btn-sm" href="{{ path('app_produit') }}" role="button">Continuer vers la boutique</a>
+            </p>
+        </div>
+    </div>
+
+{% endblock %}

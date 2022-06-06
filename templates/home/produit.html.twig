@@ -1,0 +1,121 @@
+{% extends 'base.html.twig' %}
+{% block title %}Le Grand Gourmet
+{% endblock %}
+
+{% block stylesheets %}
+	<link rel="stylesheet" href="{{asset('css/produit.css')}}">
+{% endblock %}
+
+{% block body %}
+
+	<main>
+
+{% set recherche = app.request.get('search') %}
+
+{% if recherche | length  %}
+			<p style='font-size : 30px; font-family: "Paytone One";'>Résultat de la recherche :  {{recherche | length}} produits trouvé{{ recherche | length == 1 ? '' : 's' }}</p>
+	<div class='produit_container'>
+			<div class='card_container'>
+			
+					<div class='card_container_inner'>
+			
+						{% for produit in produits %}
+
+							<div class="product_card" >
+							
+								<img class='card_img' src="{{asset("images/produits/" ~ produit.image)}}" alt="">
+								<div class="bottom_text">
+									<p>{{produit.titre}}</p>
+									<span>{{produit.prix | number_format(2)}}€</span>
+								</div>
+
+								<span class="card_btn" id='{{ produit.id }}' onmouseover="mouseOver({{produit.id}})" onmouseout="mouseOut({{produit.id}})">
+                                    <img class='card_btn_img' src="{{asset('/images/rightArrow.png')}}">
+                                </span>
+
+                                <div class="left_modal left_modal{{produit.id}}" >
+
+                                    <button  onclick='window.location.href="{{path('panier_ajouter', {"id": produit.id})}}"' class="div_img d1">
+                                        <img src="{{asset('/images/add_cart.png')}}" class='add_cart viewMore' alt="ajouter au panier icon">
+                                    </button>
+
+                                     <button onclick='window.location.href="{{path('app_afficher', {"id": produit.id})}}"' class="div_img d2">
+                                        <i class="bi bi-eye-fill viewMore" class='add_cart'></i>
+                                    </button>
+                                </div>
+							</div>
+
+						{% endfor %}
+					</div>
+				
+			</div>
+			
+			
+		</div>
+
+
+
+
+{% else %}
+	
+
+		<div class='produit_container'>
+
+			<div class='card_container'>
+				{% for categorie in categories %}
+
+					<h6>Nos {{categorie.titre}} :</h6>
+					<div class='card_container_inner'>
+
+						{% for produit in categorie.produits %}
+
+							<div class="product_card" >
+							
+								<img class='card_img' src="{{asset("images/produits/" ~ produit.image)}}" alt="">
+								<div class="bottom_text">
+									<p>{{produit.titre}}</p>
+									<span>{{produit.prix | number_format(2)}}€</span>
+								</div>
+
+								<span class="card_btn" id='{{ produit.id }}' onmouseover="mouseOver({{produit.id}})" onmouseout="mouseOut({{produit.id}})">
+                                    <img class='card_btn_img' src="{{asset('/images/rightArrow.png')}}">
+                                </span>
+
+                                <div class="left_modal left_modal{{produit.id}}" >
+
+                                    <button  onclick='window.location.href="{{path('panier_ajouter', {"id": produit.id})}}"' class="div_img d1">
+                                        <img src="{{asset('/images/add_cart.png')}}" class='add_cart viewMore' alt="ajouter au panier icon">
+                                    </button>
+
+                                     <button onclick='window.location.href="{{path('app_afficher', {"id": produit.id})}}"' class="div_img d2">
+                                        <i class="bi bi-eye-fill viewMore" class='add_cart'></i>
+                                    </button>
+                                </div>
+							</div>
+
+						{% endfor %}
+					</div>
+				{% endfor %}
+			</div>
+
+			<div class='categorie_container'>
+				<div class="categorie">
+					<ul>
+						<li id='categorie_title'>Catégorie</li>
+						{% for categorie in categories %}	
+						<li>
+							<a id="return" class='categorie_link' href="{{path('app_categorie', {"id": categorie.id})}}">{{categorie.titre}}</a>
+						</li>
+						{% endfor %}
+
+					</ul>
+				</div>
+			</div>
+		</div>
+
+{% endif %}
+	</main>
+	{% include "footer.html.twig" %}
+
+	<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+{% endblock %}

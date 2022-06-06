@@ -1,0 +1,170 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	{{ parent()}}
+	|| Paiement
+{% endblock %}
+
+{% block stylesheets %}
+	<link rel="stylesheet" href="{{asset('css/paiement.css')}}">
+{% endblock %}
+
+{% block body %}
+
+
+	<div class="content">
+
+		<div class="body_content">
+			<div class="formule">
+				<h2>Paiment</h2>
+				<div class="img_strip">
+					<img src="{{asset('images/logo-stripe.png')}}" alt="stripe logo">
+				</div>
+				<p class="titre">Information client</p>
+				<div class="formule_name">
+					<div class="input_text">
+						<label>Nom</label>
+						<input type="text" placeholder=" Alexi"/>
+					</div>
+					<div class="input_text">
+						<div style="display: flex; justify-content: space-between">
+							<label>Adresse Email</label>
+						</div>
+						<input type="text" placeholder="test@test.com"/>
+					</div>
+				</div>
+				<div class="input_text">
+					<label>Numero de téléphone</label>
+					<input type="text" placeholder="+33(6 12 13 45 46)"/>
+				</div>
+				<p class="titre">DETAILS LIVRAISON</p>
+				<div class="input_text" style="width: 100%">
+					<label>Adresse</label>
+					<input type="text" placeholder="6 rue de la ville"/>
+				</div>
+				<div class="formule_name">
+					<div class="input_text">
+						<label>Code postal</label>
+						<input type="text" placeholder="75000"/>
+					</div>
+					<div class="input_text">
+						<label>Ville</label>
+						<input type="text" placeholder="Paris"/>
+					</div>
+				</div>
+				<div class="input_text">
+					<label>Pays</label>
+					<input type="text" placeholder="France"/>
+				</div>
+
+				<p class="titre">PAYMENT DETAILS</p>
+
+				<form id="payment-form" action="{{path('app_paiement')}}" method="POST" class="mt-6">
+
+					<div id="card-element" class="input_strip"></div>
+
+					<!-- We'll put the error messages in this element -->
+					<div id="card-errors" role="alert"></div>
+
+					<button id="submit" class="btn_payer">Payer
+												({{total | number_format(2)}}
+						€)</button>
+				</form>
+
+
+			</div>
+
+		</div>
+	</div>
+
+
+	{% block javascripts %}
+
+		<script src="https://js.stripe.com/v3/"></script>
+		<script>
+			// Clé public obtenu apres inscription
+var stripe = Stripe('Votre clé public');
+// Create an instance of Elements
+// code JS se trouve dans la documentation
+var elements = stripe.elements();
+var style = {
+base: {
+color: '#32325d',
+lineHeight: '24px',
+fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
+fontSmoothing: 'antialiased',
+fontSize: '20px',
+'::placeholder': {
+color: '#aab7c4'
+}
+},
+invalid: {
+color: '#fa755a',
+iconColor: '#fa755a'
+}
+};
+
+var card = elements.create('card', {style: style});
+card.mount('#card-element');
+card.addEventListener('change', ({error}) => {
+const displayError = document.getElementById('card-errors');
+if (error) {
+displayError.textContent = error.message;
+displayError.style.color = 'red'
+} else {
+displayError.textContent = '';
+}
+});
+
+var submitButton = document.getElementById('submit');
+
+submitButton.addEventListener('click', function (ev) {
+ev.preventDefault();
+submitButton.disable = true;
+stripe.confirmCardPayment("{{ clientSecret }}", {
+payment_method: {
+card: card
+
+}
+}).then(function (result) {
+if (result.error) { // Show error to your customer (e.g., insufficient funds)
+	submitButton.disable = false;
+	console.log(result.error.message);
+} else { // The payment has been processed!
+	if (result.paymentIntent.status === 'succeeded') {
+		var paymentIntent = result.paymentIntent;
+		// var token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+		var form = document.getElementById('payment-form');
+		var url = form.action;
+		var redirect = '/merci';
+		fetch(url, {
+		headers: {
+		"content-type": "application/json",
+		"accept": "application/json, text-plain, */*",
+		"X-requested-with": "XMLHttpRequest"
+
+	},
+		method: "post",
+		body: JSON.stringify(
+		{paymentIntent: paymentIntent}
+		)
+		}).then((data) => {
+		console.log(data);
+		form.reset();
+
+		// Si le paiemnt est reussi on ajoute une redirection vers la page MERCI
+		window.location.href = redirect;
+		}).catch((error) => {
+		console.log(error)
+		// On cas d'erreur on envoi la page Desole
+		window.location.href = "/desole";
+	})
+
+	}
+}
+});
+});
+		</script>
+
+	{% endblock %}
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends 'Dashboard/baseAdmin.html.twig' %}
+
+
+{% block title %}Edit Produit{% endblock %}
+
+{% block body %}
+<div class="container">
+    <h1 class="text-center">Modifier Produit</h1>
+    <a class="btn btn-info" href="{{ path('app_admin_produit_index') }}">Retour</a>
+
+    {{ include('admin_produit/_form.html.twig', {'button_label': 'Editer'}) }}
+
+
+</div>
+    
+{% endblock %}

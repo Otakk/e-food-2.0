@@ -1,0 +1,15 @@
+{% extends 'Dashboard/baseAdmin.html.twig' %}
+
+
+{% block title %}Edit Menu{% endblock %}
+
+{% block body %}
+<div class="container">
+    <h1>Modifier Menu</h1>
+
+    {{ include('admin_menu/_form.html.twig', {'button_label': 'Editer'}) }}
+
+    <a href="{{ path('app_admin_menu_index') }}">Retour</a>
+
+ </div>  
+{% endblock %}

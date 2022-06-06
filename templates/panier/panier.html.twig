@@ -1,0 +1,90 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello CartController!
+{% endblock %}
+
+{% block body %}
+	{% if items | length > 0 %}
+		<div class="col-10 mx-auto mt-5">
+
+			<h2 class="text-center mb-5 h1">Panier</h2>
+			<table class="table">
+				<thead>
+					<tr>
+						<th>titre</th>
+						<th>prix</th>
+						<th>quantité</th>
+						<th>Total</th>
+						<th>Action</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for item in items %}
+
+						<tr>
+							<td scope="row">{{ item.product.titre }}</td>
+							<td>{{ item.product.prix  | number_format(2)}}
+								€</td>
+							<td>
+								<div class="form-group">
+								
+								  <select class="form-control w-25" name="qty" id="qty" data-id="{{ item.product.id }}" >
+									{% for i in 1..20 %}
+										<option value='{{i}}' {{item.quantity == i ? 'selected' : ''}}>{{i}}</option>
+									{% endfor %}
+									
+								  </select>
+								</div>
+							
+							
+							<td>{{ (item.product.prix * item.quantity) | number_format(2)  }}
+								€</td>
+							<td>
+								<a href="{{path('panier_supprimer', {'id' : item.product.id})}}" class="btn btn-danger">Supprimer</a>
+							</td>
+						</tr>
+					{% endfor %}
+					<tr>
+						<td colspan="3" class="text-end">Total : </td>
+						<td>{{total | number_format(2)}}
+							€</td>
+					</tr>
+				</tbody>
+			</table>
+			<div class="justify-content-end">
+				<a href="{{path('app_paiement')}}" class="btn btn-dark">Passer a la caisse</a>
+			</div>
+		</div>
+	{% else %}
+		<div class="col-6 mx-auto text-center mt-5 border border-5 rounded py-5">
+			<p class="h2">Votre panier est vide
+			</p>
+			<p>
+				<i class="bi bi-emoji-frown-fill" style="font-size: 10rem; color: red;"></i>
+			</p>
+			<a href="{{ path('app_produit')}}" class="btn btn-primary">Notre catalogue</a>
+
+		</div>
+	{% endif %}
+{% endblock %}
+
+{% block javascripts %}
+		<script>
+
+		
+
+			let qty = document.querySelectorAll('#qty');
+			Array.from(qty).forEach((element)=> {
+				element.addEventListener("change", function(){
+					var id = element.getAttribute('data-id')
+
+				console.log(this.value)
+				;
+				window.location.href= `/panier/update/${id}/${parseInt(this.value)}`
+
+				})
+			})
+		
+		</script>
+
+{% endblock %}

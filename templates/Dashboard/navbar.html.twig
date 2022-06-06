@@ -1,0 +1,41 @@
+{% if app.user %}
+
+
+<div class="navigate d-flex align-items-center justify-content-between">
+            <div class="form-group w-50 mx-2">
+            <form action="{{path('app_admin_dashboard')}}" method="post" class="d-flex">
+              <input type="text"
+                class="form-control" name="search" id="" aria-describedby="helpId" placeholder="Recherche .....">
+                <button type="submit" class="btn btn-primary">Recherche</button>
+            </form>
+            </div>
+             <div class="dropdown me-5">
+          <a
+            href="#"
+            class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
+            id="dropdownUser1"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            <img
+              src="https://github.com/mdo.png"
+              alt=""
+              width="32"
+              height="32"
+              class="rounded-circle me-2"
+            />
+            <strong>{{app.user.nom}}</strong>
+          </a>
+          <ul
+            class="dropdown-menu dropdown-menu-dark text-small shadow"
+            aria-labelledby="dropdownUser1"
+          >
+            <li><a class="dropdown-item" href="{{path('app_home')}}">Accueil</a></li>
+            <li><a class="dropdown-item" href="{{path('profile_index')}}">Profile</a></li>
+            <li><hr class="dropdown-divider" /></li>
+            <li><a class="dropdown-item" href="{{path('app_logout')}}">Déconnexion</a></li>
+          </ul>
+        </div>
+
+
+{% endif %}

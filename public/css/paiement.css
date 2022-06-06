@@ -1,0 +1,215 @@
+/* @import url("https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700&display=swap"); */
+@import url("https://fonts.googleapis.com/css2?family=Cookie&family=IM+Fell+English+SC&family=Montserrat:wght@400;600;700&family=Paytone+One&display=swap");
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Manrope", sans-serif;
+  background-color: #f2f2f2;
+  position: relative;
+}
+.btn_payer{
+    margin-top: 50px;
+    background-color: #000000;
+    color: white;
+    text-align: center;
+    padding: 15px;
+    border-radius: 10px;
+    width: 100%;
+
+}
+.btn_merci{
+    margin-top: 20px;
+    background-color: #000000;
+    color: white !important;
+    text-align: center;
+    
+    padding: 15px;
+    border-radius: 10px;
+    width: 30%;
+}
+.btn_merci:hover{
+    background-color: #52ac6dbd;
+    cursor: pointer;
+}
+.btn_merci a{
+    color: white;
+    text-decoration: none;
+}
+.input_strip {
+  border: 1px solid #cfcfcf;
+  padding: 10px;
+  border-radius: 5px;
+}
+.titre {
+  font-family: "Paytone One";
+  font-size: x-large;
+  color: #d87d4a;
+  margin-bottom: 10px;
+}
+
+.content {
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
+.body_content {
+  display: flex;
+  justify-content: space-between;
+}
+.formule {
+  width: 90%;
+  margin: auto;
+  background-color: #ffffff;
+  border-radius: 8px;
+  padding-top: 54px;
+  padding-bottom: 54px;
+  padding-left: 48px;
+  padding-right: 48px;
+}
+.formuleMerci {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 90%;
+  margin: auto;
+  background-color: #ffffff;
+  border-radius: 8px;
+  padding-top: 54px;
+  padding-bottom: 54px;
+  padding-left: 48px;
+  padding-right: 48px;
+  margin-top: 50px;
+}
+.formule_name {
+  display: flex;
+  justify-content: space-between;
+}
+span {
+  font-family: Manrope;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  text-align: right;
+  letter-spacing: -0.214286px;
+  color: #cd2c2c;
+}
+.input_text {
+  display: flex;
+  flex-direction: column;
+  width: 49%;
+  margin-bottom: 49px;
+}
+label {
+  font-family: Manrope;
+  font-weight: bold;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: -0.214286px;
+  color: #000000;
+  margin-bottom: 5px;
+}
+.input_text input {
+  height: 56px;
+  background: #ffffff;
+  border: 1px solid #cfcfcf;
+  box-sizing: border-box;
+  border-radius: 8px;
+  padding-left: 24px;
+  font-family: Manrope;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 20px;
+  line-height: 19px;
+  letter-spacing: -0.25px;
+}
+.input_text input:focus {
+  outline: none;
+  height: 56px;
+  background: #ffffff;
+  border: 1px solid #d87d4a;
+  box-sizing: border-box;
+  border-radius: 8px;
+  padding-left: 24px;
+  font-family: Manrope;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 20px;
+  line-height: 19px;
+  letter-spacing: -0.25px;
+}
+.payment {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 16px;
+}
+h2 {
+  margin-bottom: 0;
+}
+.img_strip {
+  text-align: center;
+}
+
+@media screen and (max-width: 1024px) {
+  .content {
+    margin-left: 5%;
+    margin-right: 5%;
+  }
+  .body_content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .formule {
+    width: 100%;
+    margin: 0;
+    padding-bottom: 54px;
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+  .btn_merci{
+    margin-top: 20px;
+    background-color: #000000;
+    color: white !important;
+    padding: 15px;
+    border-radius: 10px;
+    width: 60%;
+}
+}
+
+@media screen and (max-width: 425px) {
+  label {
+    display: none;
+  }
+  .content {
+    margin-left: 0;
+    margin-right: 0;
+  }
+  .formule {
+    margin: 0;
+    padding-bottom: 54px;
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+  .img_strip > img {
+    width: 100%;
+  }
+  .formule_name {
+    display: flex;
+    flex-direction: column;
+  }
+  .input_text {
+    width: 100%;
+  }
+ 
+  .btn_merci{
+    margin-top: 20px;
+    background-color: #000000;
+    color: white !important;
+    padding: 15px;
+    border-radius: 10px;
+    width: 80%;
+}
+}

@@ -1,0 +1,49 @@
+   {% set current_path = app.request.get('_route') %}
+
+<div
+        class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark sidebare"
+        style="width: 280px; height: 100vh"
+      >
+        <a
+          href="/"
+          class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none"
+        >
+          <img src="{{asset('images/logo.png')}}" class="logo" />
+          <span class="fs-4">Le GRAND GOURMET</span>
+        </a>
+        <hr />
+        <ul class="nav nav-pills flex-column mb-auto">
+          <li class="nav-item">
+            <a href="{{path('app_admin_dashboard')}}" class="nav-link text-white {{ current_path=='app_admin_dashboard' ? 'active' :'' }}" aria-current="page">
+              <i class="bi bi-house-door"></i>
+              Dashboard
+            </a>
+          </li>
+          <li>
+
+
+            <a href="{{path('app_admin_produit_index')}}" class="nav-link text-white {{ current_path=='app_admin_produit_index' ? 'active' :'' }}">
+              <i class="bi bi-gem"></i>
+              Produits
+            </a>
+          </li>
+          <li>
+            <a href="{{path('app_admin_categorie_index')}}" class="nav-link text-white {{ current_path=='app_admin_categorie_index' ? 'active' :'' }}">
+              <i class="bi bi-file-text"></i>
+              Catégories
+            </a>
+          </li>
+          <li>
+            <a href="{{path('app_admin_menu_index')}}" class="nav-link text-white {{ current_path=='app_admin_menu_index' ? 'active' :'' }}">
+              <i class="bi bi-menu-up"></i>
+              Menus
+            </a>
+          </li>
+          <li>
+            <a href="{{path('app_admin_user_index')}}" class="nav-link text-white {{ current_path=='app_admin_user_index' ? 'active' :'' }}">
+              <i class="bi bi-people-fill"></i>
+              Utilisateurs
+            </a>
+          </li>
+        </ul>
+      </div>

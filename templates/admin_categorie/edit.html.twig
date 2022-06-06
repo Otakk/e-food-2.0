@@ -1,0 +1,15 @@
+{% extends 'Dashboard/baseAdmin.html.twig' %}
+
+{% block title %}Edit Categorie{% endblock %}
+
+{% block body %}
+<div class="container">
+    <h1>Modifier Categorie</h1>
+    <a href="{{ path('app_admin_categorie_index') }}" class="btn btn-info">Retour</a>
+
+    {{ include('admin_categorie/_form.html.twig', {'button_label': 'Editer'}) }}
+
+</div>
+
+    
+{% endblock %}

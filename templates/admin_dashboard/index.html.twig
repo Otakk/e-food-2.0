@@ -1,0 +1,71 @@
+{% extends 'Dashboard/baseAdmin.html.twig' %}
+
+
+{% block title %}Produit index
+{% endblock %}
+
+{% block body %}
+	<div class="container mt-2">
+		<h1 class="text-center">Dasboard</h1>
+		{% if produits %}
+			<h3 class="">{{produits | length}}
+				produits trouvé</h3>
+			<table class="table">
+				<thead>
+					<tr>
+						<th>id</th>
+						<th>Titre</th>
+						<th>Prix</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for produit in produits %}
+						<tr>
+							<td scope="row">{{produit.id}}</td>
+							<td>{{produit.titre}}</td>
+							<td>{{produit.prix}}</td>
+						</tr>
+					{% endfor %}
+
+				</tbody>
+			</table>
+		{% else %}
+
+			<h2>Statistique </h2>
+
+
+			<div class="row">
+				<div class="col-sm-4 mb-3">
+					<div class="card  bg-primary">
+						<div class="card-body">
+							<h5 class="card-title">PRODUITS {{staticProduit}}</h5>
+							<p class="card-text">Une gamme de produits avec <br><strong>{{staticProduit}}</strong> produits au total</p>
+							<a href="{{path('app_admin_produit_index')}}" class="btn btn-dark">Afficher</a>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-4 mb-3">
+					<div class="card  bg-warning">
+						<div class="card-body">
+							<h5 class="card-title">Catégories</h5>
+							<p class="card-text">Plusieurs catégories <br><strong>{{staticCategorie}}</strong> au total </p>
+							<a href="{{path('app_admin_categorie_index')}}" class="btn btn-dark">Afficher</a>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-4 mb-3">
+					<div class="card  bg-danger">
+						<div class="card-body">
+							<h5 class="card-title">Menus</h5>
+							<p class="card-text">Une gamme des menus <br><strong>{{staticMenu}}</strong></p>
+							<a href="{{path('app_admin_menu_index')}}" class="btn btn-dark  text-end">Afficher</a>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		{% endif %}
+
+	</div>
+
+{% endblock %}

@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+{% block title %}Le Grand Gourmet
+{% endblock %}
+
+{% block stylesheets %}
+	<link rel="stylesheet" href="{{asset('css/fiche_produit.css')}}">
+{% endblock %}
+
+{% block body %}
+	{# <a class="btn_ajout" href="{{path('panier_ajouter', {"id": 1})}}"><i class="bi bi-cart-plus-fill"></i></a> #}
+	<div id='fiche_container'>
+		<div id='card_fiche'>
+			<img id="img_produit" src="{{asset("images/produits/" ~ produit.image)}}" alt="produit.image">
+			<div class="product_cardd">
+
+				<div class="body_fiche">
+					<h4>{{produit.titre}}</h4>
+					<p class='body_fiche_description'>{{produit.description }}
+						Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum facere, quis omnis rem quasi cumque cupiditate. Expedita harum nisi accusamus! Expedita inventore aliquam neque modi porro eligendi ex tempora odit.
+					</p>
+					<p class="prix">{{produit.prix | number_format(2)}}
+						€
+					</p>
+					<button class="boutonpanier">
+						<a style='' href="{{path('panier_ajouter', {"id": produit.id})}}">Ajouter au panier</a>
+					</button>
+				</div>
+			</div>
+		</div>
+
+		<div id="card">
+			<h5 class="titre">Découvrez d'autres produits</h5>
+			
+			<div id="image_container">
+				<div class="img_card">
+					<img class="image_card" src="{{asset("images/produits/" ~ produit.image)}}" alt="produit.image">
+					<h6>{{produit.titre}}</h6>
+				</div>
+
+				<div class="img_card">
+					<img class="image_card" src="{{asset("images/produits/" ~ produit.image)}}" alt="produit.image">
+					<h6>{{produit.titre}}</h6>
+				</div>
+
+				<div class="img_card">
+					<img class="image_card" src="{{asset("images/produits/" ~ produit.image)}}" alt="produit.image">
+					<h6>{{produit.titre}}</h6>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+
+
+	{% include "footer.html.twig" %}
+{% endblock %}

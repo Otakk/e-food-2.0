@@ -1,0 +1,153 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Profil
+{% endblock %}
+
+{% block stylesheets %}
+	<link rel="stylesheet" href="{{asset('css/profilStyle.css')}}">
+{% endblock %}
+
+{% block body %}
+
+	{% for message in app.flashes('success') %}
+
+
+		<div class="alert alert-success col-8 mx-auto text-center my-4" id="alertMessage">
+			{{message}}
+		</div>
+
+	{% endfor %}
+
+	{% for message in app.flashes('error') %}
+		<div class="alert alert-danger col-8 mx-auto text-center my-4" id="alertMessage">
+			{{message}}
+		</div>
+
+	{% endfor %}
+
+	<div class="container_profil">
+
+		<h2>Mon profil</h2>
+
+		<div class='ProfilAndMenu'>
+			<div class="contenu_profil">
+
+				<div class="menu_profil">
+
+					<h4>Historique des commandes</h4>
+
+					<p id='commandOrder'>Mes commandes :</p>
+
+					<div class="histo_Command">
+
+						{% if commandes %}
+
+						{% for produit in commandes %}
+
+							<p>Commande N°{{produit.numero }}</p>
+
+
+							<div class="histo_title">Détails commande</div>
+
+							<div class="histo_container">
+
+								<div class='histo_image' style='background-image: url({{asset(' /images/produits/10_LES_BURGERS_640x400.jpg')}})'></div>
+
+								<div class="histo_details">
+
+									<div class='histo_detail_inner'>
+										<p>{{produit.dateFature |date("Y-m-d à H:s")}}</p>
+									</div>
+
+									{% for prod in produit.produits %}
+										<ul>
+											<div class='histo_detail_inner'>
+												<li>{{prod.product.titre}} • x{{prod.quantity}}</li>
+											</div>
+										</ul>
+									{% endfor %}
+								</div>
+
+								<div class="histo_prix">Total :
+									{{produit.montant | number_format(2)}}€
+								</div>
+
+							</div>
+							<hr style='background-color:rgb(226, 226, 226);width:100%;margin: 12px 0 5px 0'>
+
+
+						{% endfor %}
+
+					{% else %}
+							<p id='PasDeCommande'>Pas de commande <i class="fa-solid fa-2xl fa-face-frown-open"></i></p>
+					{% endif %}
+					</div>
+				</div>
+			</div>
+
+			<div class="info_profil">
+
+				<div class="information">
+
+					<h4>Mes informations personnelles</h4>
+					<form action="{{path('app_updateUser')}}">
+						<div class='input_info disabled'>
+							<label>Nom</label>
+							<input type="text" name="nom" value="{{app.user.nom}}" disabled>
+						</div>
+						<div class='input_info disabled'>
+							<label>Prénom</label>
+							<input type="text" name="prenom" value="{{app.user.prenom}}" disabled>
+						</div>
+						<div class='input_info'>
+							<label>Adresse</label>
+							<input type="text" name="adresse" value="{{app.user.adresse}}">
+						</div>
+						<div class='input_info'>
+							<label>Code postal</label>
+							<input type="text" name="codePostal" value="{{app.user.codePostal}}">
+						</div>
+						<div class='input_info'>
+							<label>Numéro de téléphone</label>
+							<input type="text" name="numTelephone" value="{{app.user.numTelephone}}">
+						</div>
+
+						<div id="profil_btn">
+							<input type="submit" value="Enregistrer" class="profil_btn_input">
+						</div>
+					</div>
+
+				<div class="information">
+					<h5>Informations de connexion</h5>
+
+					<div class='input_info'>
+						<label>Numéro de téléphone</label>
+						<input type="text" name="nom" value="{{app.user.email}}">
+
+					</div>
+					<form action="" method="POST">
+						<div class='input_info'>
+							<h5>Ancienne mot de passe</h5>
+							<input type="password" name="oldPassword">
+						</div>
+						<div class='input_info'>
+							<h5>Mot de passe</h5>
+							<input type="password" name="password">
+						</div>
+						<div class='input_info'>
+							<h5>Confirmer le mot de passe</h5>
+							<input type="password" name="confirme_password">
+						</div>
+
+						<div id="profil_btn">
+							<input type="submit" value="Enregistrer" class="profil_btn_input">
+						</div>
+					</form>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+{% endblock %}
+

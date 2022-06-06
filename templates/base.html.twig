@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, user-scalable=no">
+        <title>{% block title %}Le Grand Gourmet{% endblock %}</title>
+        <link rel="icon" href="images/logo.png">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+        {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
+        <link rel="stylesheet" href="{{ asset('css/style.css')}}">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css" integrity="sha512-10/jx2EXwxxWqCLX/hHth/vu2KY3jCF70dCQB8TSgNjbCVAC/8vai53GfMDrO2Emgwccf2pJqxct9ehpzG+MTw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+        {% block stylesheets %}
+            
+        {% endblock %}
+    </head>
+    <body>
+              <div class="panier">
+            <div id="panier">
+                <div id="header_panier">
+                    <div id="left_header">
+                        <img src="{{asset('images/logo.png')}}" alt="Le grand gourmet logo" id="header_img">
+                        <div id="header_title">Panier</div>
+                    </div>
+                    <svg class='fermer' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25 25" style='height:50px;'>
+                        <path d="M12.5 25C5.6 25 0 19.4 0 12.5S5.6 0 12.5 0 25 5.6 25 12.5 19.4 25 12.5 25zm0-23.5c-6.1 0-11 4.9-11 11s4.9 11 11 11 11-4.9 11-11-4.9-11-11-11z"></path>
+                        <path d="M16.6 15.5c.3.3.3.8 0 1-.2.2-.4.2-.6.2s-.4-.1-.6-.2l-3-3-3 3c-.3.3-.8.3-1 0-.3-.3-.3-.8 0-1l3-3-3-3c-.3-.3-.3-.8 0-1 .2-.2.4-.2.6-.2s.4.1.6.2l3 3 3-3c.3-.3.8-.3 1 0 .2.2.2.4.2.6s-.1.4-.2.6l-3 3 3 2.8z"></path></svg>
+                </div>
+
+                <div id='container_overflow'>
+                    <ul id="panier_container">
+
+                        {% if items %}
+                            
+                        {% for item in items %}
+
+                            <li class="panier_card">
+                                <h5>{{item.product.titre|capitalize}}</h5>
+                                <div id='TitreQuantiteDelete'>
+                                    <div class="overall">
+                                        <div class="form-group">
+                                    
+                                            <select style  class="form-control" name="qty" id="qty" data-id="{{ item.product.id }}" >
+                                            {% for i in 1..20 %}
+                                                <option value='{{i}}' {{item.quantity == i ? 'selected' : ''}}>{{i}}</option>
+                                            {% endfor %}
+                                            
+                                            </select>
+                                        </div>
+                                            <p class='QTYMultiplier'>x</p>
+                                            <div class="prix_panier">{{item.product.prix|number_format(2)}}€</div>
+                                        </div>
+                                        <a href="{{path('panier_supprimer', {'id' : item.product.id})}}"><i class="fa-solid fa-trash-can"></i></a>
+                                    </div>
+                            </li>
+                            <hr style='background-color:black !important;'>
+
+                        {% endfor %}
+                    </ul>
+                    <div class="panier_total">
+                        <p>Total :</p>
+                        <p>{{total|number_format(2)}}€</p>
+                    </div>
+                    <div id='panier_button_container'>
+                        <div id='panier_button'>
+                           <a id='panier_lien' href="{{path('app_paiement')}}"> Valider la commande <i class="fa-solid fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                    {% else %}
+                        <p class='emptyPanier'>Le panier est vide</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        {% include "nav.html.twig" %}
+
+        {% block body %}
+        {% endblock %}
+
+        
+
+            <script src="{{asset('js/script.js')}}"></script>
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+            
+        {% block javascripts %}
+        {% endblock %}
+    </body>
+</html>

@@ -1,0 +1,13 @@
+{% extends 'Dashboard/baseAdmin.html.twig' %}
+
+{% block title %}Nouvelle catégorie{% endblock %}
+
+{% block body %}
+<div class="container">
+    <h1>Nouvelle catégorie</h1>
+    <a href="{{ path('app_admin_categorie_index') }}" class="btn btn-info">Retour</a>
+
+    {{ include('admin_categorie/_form.html.twig') }}
+</div>
+
+{% endblock %}

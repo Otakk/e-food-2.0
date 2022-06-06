@@ -1,0 +1,78 @@
+{% extends 'base_home.html.twig' %}
+
+{% block title %}Le Grand Gourmet
+{% endblock %}
+
+
+{% block body %}
+
+
+    <div class="big_boss">
+
+
+        {% include "nav_home.html.twig" %}
+
+        <div id="home_bg">
+
+            <img id='gourmet_img' src="{{asset("images/restaurant_logo.png")}}" alt="Le Gourmet">
+            <h2>Cuisine fraiche et rapide</h2>
+            <h1>Le Grand Gourmet</h1>
+            <form action="{{path('app_produit')}}" method='POST'>
+                <div id="search_bar">
+                    {# <img id='vapeur_logo' src="{{asset('images/vapeur.png')}}" alt="vapeur logo"> #}
+                        <input type="search" name="search" placeholder="J'ai faim de . . .">
+                        <button type='submit' id='search_btn'>Rechercher</button>
+                </div>
+            </form>
+
+        </div>
+
+        <main>
+            <div id="main_container">
+               <div id="sub_container">
+                    <h3>Top produits --></h3>
+                    
+                    <div class='card_container'>
+                        {% for produit in produits|slice(0,4) %}
+                            <a class="product_card" href="" style="background-image: url({{asset("images/produits/" ~ produit.image)}}); background-position:center; background-size:cover;">
+                            </a>
+                        {% endfor %}
+                        <a class="show_more" href="/produit" >  
+                            <i class="fa-solid fa-circle-right"></i>
+                                <div id='show_more_div'>
+                                    <div class='show_more_text'>
+                                    <p>Voir</p>
+                                    <p>tout</p>
+                                    </div>
+                                </div>
+                            <i class="fa-solid fa-circle-right"></i>
+                        </a>
+                    </div>
+                    
+                    <h4>Top menus  --></h4>
+                
+                    <div class='card_container'>
+
+                        <a class="product_card img_card1" href=""></a>
+                        <a class="product_card img_card2" href=""></a>
+                        <a class="product_card img_card3" href=""></a>
+                        <a class="product_card img_card4" href=""></a>
+                        <a class="show_more" href="/produit" >  
+                            <i class="fa-solid fa-circle-right"></i>
+                                <div class='show_more_text'>
+                                    <p>Voir</p>
+                                    <p>tout</p>
+                                </div>
+                            <i class="fa-solid fa-circle-right"></i>
+                        </a>
+                            
+                    </div>
+                </div>
+            </div>
+
+        </main>
+
+        {% include "footer.html.twig" %}
+    </div>
+
+{% endblock body %}

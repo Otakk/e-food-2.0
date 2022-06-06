@@ -1,0 +1,85 @@
+{% extends 'Dashboard/baseAdmin.html.twig' %}
+
+
+{% block title %}Produit index
+{% endblock %}
+
+{% block body %}
+	<div class="container mt-2">
+		<h1 class="text-center">Liste des produits</h1>
+		{% for message in app.flashes('success') %}
+			<div class="alert alert-success col-8 mx-auto text-center my-4 d-none" id="alertMessage">
+				{{message}}
+			</div>
+			{% block javascripts %}
+				<script>
+					var div1 = document.getElementById('alertMessage');
+
+showMessage(div1.innerHTML)
+				</script>
+
+			{% endblock %}
+
+		{% endfor %}
+
+		<a href="{{ path('app_admin_produit_new') }}" class="btn btn-success">Nouveau produit</a>
+		<table class="table align-middle text-center">
+			<thead>
+				<tr>
+					<th>Id</th>
+					<th>Titre</th>
+					<th>Description</th>
+					<th>Prix</th>
+					<th>Catégorie</th>
+					<th>Image</th>
+					<th>Modifier</th>
+					<th>Supprimer</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for produit in produits %}
+					<tr>
+						<td>{{ produit.id }}</td>
+						<td>{{ produit.titre }}</td>
+						<td>{{ produit.description }}</td>
+						<td>{{ produit.prix | number_format(2) }}
+							€</td>
+						<td>{{ produit.categorie.titre }}</td>
+
+						<td>
+							{% if produit.image %}
+
+								<img src="{{asset("images/produits/" ~ produit.image )}}" alt="{{ produit.titre }}">
+							{% else %}
+								<img src="{{asset("images/logo.png")}}" alt="{{ produit.titre }}">
+							{% endif %}
+						</td>
+						<td>
+							<a href="{{ path('app_admin_produit_edit', {'id': produit.id}) }}">
+								<i class="bi bi-pencil" style="font-size: 2rem; color: blue;"></i>
+							</a>
+						</td>
+						<td>
+							{{ include('admin_produit/_delete_form.html.twig') }}
+						</td>
+
+					</tr>
+
+
+					
+				{% else %}
+					<tr>
+						<td colspan="6">Pas de données disponilbe
+						</td>
+					</tr>
+				{% endfor %}
+
+			</tbody>
+		</table>
+
+        <div class="navigation d-flex justify-content-center mt-5">
+						{{ knp_pagination_render(produits) }}
+					</div>
+	</div>
+
+{% endblock %}
