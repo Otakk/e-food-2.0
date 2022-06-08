@@ -399,10 +399,10 @@ main {
 /* Footer */
 
 footer {
-  min-height: 30vh;
   background-color: #191919;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  padding: 40px;
 }
 
 #footer_title {
@@ -412,11 +412,14 @@ footer {
 }
 
 #left_footer {
+  position: relative;
   width: 540px;
-  margin-left: 15%;
   padding-top: 50px;
   padding-bottom: 20px;
-  position: relative;
+}
+
+#bottom_footer{
+  display: flex;
 }
 
 #footer_text {
@@ -452,7 +455,6 @@ footer {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  margin-right: 15%;
   padding-top: 50px;
   padding-bottom: 20px;
 }
@@ -469,16 +471,23 @@ footer {
 
 #network_link {
   display: flex;
-  gap: 20px;
+  gap: 30px;
+}
+
+#network_link > a > IMG {
+  height: 35px;
+}
+
+.foot_link {
+  font-size: 20px;
 }
 
 #footer_link > a:hover {
   text-decoration: overline;
 }
-
 /* panier */
 
-#header_panier {
+#header_basket {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -487,6 +496,7 @@ footer {
   padding: 14px 30px;
   border-bottom: 1px solid #24212071;
 }
+
 
 #left_header {
   display: flex;
@@ -513,7 +523,7 @@ footer {
   background: transparent;
 }
 
-.emptyPanier {
+.emptybasket {
   margin-top: 50px;
   font-family: "Paytone One";
   font-size: 26px;
@@ -528,21 +538,30 @@ footer {
   list-style: none;
 }
 
-.panier {
-  display: none;
+.basket {
+  display: block;
   position: fixed;
-  right: 0;
+  right: -400px;
   height: 100%;
   width: 400px;
   background-color: rgba(255, 252, 234, 0.95);
-  animation: panier 250ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition: 450ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
   animation-fill-mode: forwards;
   transform-origin: right;
   z-index: 998 !important;
   overflow: auto;
 }
 
-.panier_card {
+#basket_font{
+  display: none;
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(102, 102, 102, 0.452);
+  z-index: 990 !important;
+}
+
+.basket_card {
   margin: 20px 25px 20px 25px;
 }
 
@@ -552,16 +571,16 @@ h5 {
   margin-top: 0;
 }
 
-.quantity_panier,
-.prix_panier,
-.panier_total {
+.quantity_basket,
+.prix_basket,
+.basket_total {
   font-size: 18px;
   font-family: "Montserrat", sans-serif;
   font-weight: 600;
 }
 
-.prix_panier,
-.panier_total {
+.prix_basket,
+.basket_total {
   text-align: end;
 }
 
@@ -584,19 +603,19 @@ h5 {
   align-items: flex-end;
 }
 
-.panier_total {
+.basket_total {
   display: flex;
   justify-content: space-between;
   margin: 40px 25px 20px 25px;
 }
 
-#panier_button_container {
+#basket_button_container {
   display: flex;
   justify-content: center;
   margin-top: 30px;
 }
 
-#panier_button {
+#basket_button {
   border: none;
   background-color: #fec057;
   color: rgba(255, 252, 234, 0.95);
@@ -609,37 +628,20 @@ h5 {
   transition: 200ms;
 }
 
-#panier_lien {
+#basket_lien {
   text-decoration: none;
   color: rgba(255, 252, 234, 0.95);
 }
 
-#panier_button:hover {
+#basket_button:hover {
   background-color: rgba(255, 252, 234, 0.95);
   border: solid #fec057 1px;
 }
 
-#panier_button:hover > a {
+#basket_button:hover > a {
   color: #fec057;
 }
 
-@keyframes panier {
-  0% {
-    transform: scaleX(0);
-  }
-  100% {
-    transform: scaleX(1);
-  }
-}
-
-@keyframes panierclose {
-   100% {
-    transform: scaleX(1);
-  }
-  0% {
-    transform: scaleX(0);
-  }
-}
 /* ******************************** LAPTOP ******************************************* */
 
 @media screen and (max-width: 1200px) {
@@ -724,7 +726,41 @@ h5 {
   }
 }
 
+
 /* ******************************** TABLETTE  ******************************************* */
+
+@media screen and (max-width: 800px) {
+  footer{
+    flex-direction: column-reverse;
+  }
+
+  #left_footer{
+    padding-top: 0;
+    width: auto;
+  }
+  
+  #footer_text{
+    margin-top: 20px;
+    text-align: justify;
+  }
+
+  #right_footer{
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  #footer_link{
+    flex-direction: row;
+  }
+
+  #network_link{
+    flex-direction: row;
+  }
+  
+  #network_link > a > img{
+    height: 30px;
+  }
+}
 
 @media screen and (max-width: 640px) {
   /* nav */
@@ -784,6 +820,30 @@ h5 {
 
   .cart_container {
     margin: 0 !important;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  #right_footer{
+    margin: 0;
+    padding-top: 0;
+    align-items: start;
+  }
+  
+  #network_link > a > img{
+    height: 30px;
+  }
+
+  #footer_link{
+    display: none;
+  }
+
+  .show_more {
+    flex-direction: row;
+    width: 100%;
+    justify-content: center;
+    height: 80px;
+    transform: none;
   }
 }
 

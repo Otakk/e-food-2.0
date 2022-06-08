@@ -34,11 +34,11 @@
                                 <div class="left_modal left_modal{{produit.id}}" >
 
                                     <button  onclick='window.location.href="{{path('panier_ajouter', {"id": produit.id})}}"' class="div_img d1">
-                                        <img src="{{asset('/images/add_cart.png')}}" class='add_cart viewMore' alt="ajouter au panier icon">
+										<img src="{{asset('/images/add_cart.png')}}" class='add_cart viewMore' alt="ajouter au panier icon">
                                     </button>
 
-                                     <button onclick='window.location.href="{{path('app_afficher', {"id": produit.id})}}"' class="div_img d2">
-                                        <i class="bi bi-eye-fill viewMore" class='add_cart'></i>
+									<button onclick='window.location.href="{{path('app_afficher', {"id": produit.id})}}"' class="div_img d2">
+										<i class="bi bi-eye-fill viewMore" class='add_cart'></i>
                                     </button>
                                 </div>
 							</div>

@@ -18,16 +18,16 @@ class CategorieType extends AbstractType
         ->add('titre', TextType::class, [
             "required" => false
         ])
-            ->add('description', TextareaType::class,[
-                "required" => false,
-                "attr" => [
-                    "cols" => 8
-                ]
-            ])
-            ->add('image' , FileType::class, [
-                "required" => false,
-                "data_class" => null
-            ])
+        ->add('description', TextareaType::class,[
+            "required" => false,
+            "attr" => [
+                "cols" => 8
+            ]
+        ])
+        ->add('image' , FileType::class, [
+            "required" => false,
+            "data_class" => null
+        ])
         ;
     }
 

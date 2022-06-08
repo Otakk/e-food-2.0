@@ -29,8 +29,11 @@ class PaiementController extends AbstractController
         // $session->remove('panier');
         $total = $panier->getTotal();
 
-        // Ajouter la clé secret du stripe (Mettre votre propre clé secret de test)
-        Stripe::setApiKey('');
+        // Ajouter la clé secret du stripe (Mettre votre propre clef secret de test)
+        Stripe::setApiKey('sk_test_51L7f3JKWD0dldeto6R0xzbZiDNrj9PIEO0mT6MTOhucaw5jW1mZjdzeB87IWEPOnpfeXilXoi2Fs41v2p5dI4JVm00rz5WZ9KU');
+        
+        // 9.46min +90xp victoire
+
 
         /* https://stripe.com/docs/payments/payment-intents
         
@@ -94,8 +97,7 @@ class PaiementController extends AbstractController
 
     /**
      * @Route("/cancel-url", name="cancel_url")]
-     * 
-     * 
+     *  
      */
     public function cancelUrl(Panier $panier, CategorieRepository $categorieRepository): Response
     {

@@ -21,7 +21,7 @@ class PanierController extends AbstractController
 
         /* Envoi tous le panier vers la page panier
             getFullCart() : obtenir tous le contenu du panier
-             getTotal() : Obtenir le total du panier 
+            getTotal() : Obtenir le total du panier 
 
         */
         return $this->render('panier/panier.html.twig', [

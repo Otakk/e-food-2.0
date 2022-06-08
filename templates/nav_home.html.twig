@@ -11,19 +11,18 @@
 							<i id='drop' class="fa-solid fa-caret-down"></i>
 						</div>
 
-						<div id='modal_categorie'>	
+						<ul id='modal_categorie'>	
+
 							{% for categorie in categories %}
 								
-							<div class='div_modal_hover_categorie'>
+							<li class='div_modal_hover_categorie'>
 								<a class='modal_btn_categorie' href="{{path('app_categorie', {'id': categorie.id})}}">{{categorie.titre}}</a>
-							</div>
+							</li>
 							{% endfor %}
 		
 				
-						</div>
+						</ul>
 					</div>
-				
-
 				</div>
 
 				<div id='menu'>

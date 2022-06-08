@@ -89,14 +89,12 @@ class Panier
             $total += $item['product']->getPrix() * $item['quantity'];
         }
 
-
         return $total;
     }
 
     public function update($id, $qty)
     {
         $panier = $this->session->get('panier', []);
-
         
         // Tester si le panier n'est pas vide
         if (!empty($panier[$id])) {

@@ -1,21 +1,24 @@
+
 // panier modal
 
-let openPanier = document.getElementsByClassName("cart_container");
-let panier = document.getElementsByClassName("panier")[0];
+let openPanier = document.getElementsByClassName("cart_container")[0];
+let panier = document.getElementsByClassName("basket")[0];
 let closePanier = document.getElementsByClassName("fermer")[0];
-let isOpen2 = false;
+let panier_font = document.getElementById("basket_font");
 
-Array.from(openPanier).forEach((x) => {
-  console.log(x);
-  x.addEventListener("click", function () {
-    panier.style.display = "block";
-    isOpen2 = true;
+openPanier.addEventListener("click", function () {
+    panier.style.right = "0";
+    panier_font.style.display = "block";
   });
 
-  closePanier.addEventListener("click", function () {
-    panier.style.display = "none";
-    isOpen2 = false;
-  });
+closePanier.addEventListener("click", function () {
+  panier.style.right = "-400px";
+  panier_font.style.display = "none";
+});
+
+panier_font.addEventListener("click", function () {
+  panier.style.right = "-400px";
+  panier_font.style.display = "none";
 });
 
 // nav modal categorie
@@ -46,7 +49,6 @@ openMenuBurger.addEventListener("click", function () {
 });
 
 closeMenu.addEventListener("click", function () {
-  console.log(closeMenu);
   Menu.style.display = "none";
   isOpen3 = false;
 });

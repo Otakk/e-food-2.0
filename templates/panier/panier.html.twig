@@ -1,7 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello CartController!
-{% endblock %}
+{% block title %}Hello CartController!{% endblock %}
 
 {% block body %}
 	{% if items | length > 0 %}
@@ -23,22 +22,19 @@
 
 						<tr>
 							<td scope="row">{{ item.product.titre }}</td>
-							<td>{{ item.product.prix  | number_format(2)}}
-								€</td>
+							<td>{{ item.product.prix  | number_format(2)}}€</td>
 							<td>
 								<div class="form-group">
 								
 								  <select class="form-control w-25" name="qty" id="qty" data-id="{{ item.product.id }}" >
-									{% for i in 1..20 %}
+									{% for i in 1..10 %}
 										<option value='{{i}}' {{item.quantity == i ? 'selected' : ''}}>{{i}}</option>
 									{% endfor %}
-									
 								  </select>
 								</div>
+							</td>
 							
-							
-							<td>{{ (item.product.prix * item.quantity) | number_format(2)  }}
-								€</td>
+							<td>{{ (item.product.prix * item.quantity) | number_format(2)  }}€</td>
 							<td>
 								<a href="{{path('panier_supprimer', {'id' : item.product.id})}}" class="btn btn-danger">Supprimer</a>
 							</td>

@@ -7,7 +7,6 @@
         <title>{% block title %}Le Grand Gourmet{% endblock %}</title>
         <link rel="icon" href="images/logo.png">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
-        {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
         <link rel="stylesheet" href="{{ asset('css/style_home.css')}}">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css" integrity="sha512-10/jx2EXwxxWqCLX/hHth/vu2KY3jCF70dCQB8TSgNjbCVAC/8vai53GfMDrO2Emgwccf2pJqxct9ehpzG+MTw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
         {% block stylesheets %}
@@ -15,31 +14,11 @@
         {% endblock %}
     </head>
     <body>
-
-     
-        {# 
-        <div id='modal_categorie_responsive'>	
-            <div class='div_modal_hover_categorie_responsive'>
-                <a class='modal_btn_categorie_responsive' href="">Burger</a>
-            </div>
-
-            <div class='div_modal_hover_categorie_responsive'>
-                <a class='modal_btn_categorie_responsive' href="">Pizza</a>
-            </div>
-            <div class='div_modal_hover_categorie_responsive'>
-                <a class='modal_btn_categorie_responsive' href="">Salade</a>
-            </div>
-            <div class='div_modal_hover_categorie_responsive'>
-                <a class='modal_btn_categorie_responsive' href="">Dessert</a>
-            </div>
-            <div class='div_modal_hover_categorie_responsive'>
-                <a class='modal_btn_categorie_responsive' href="">Boisson</a>
-            </div>
-        </div> #}
-
-        <div class="panier">
-            <div id="panier">
-                <div id="header_panier">
+    
+        <div id="basket_font"></div>
+        <div class="basket">
+            <div id="basket">
+                <div id="header_basket">
                     <div id="left_header">
                         <img src="{{asset('images/logo.png')}}" alt="Le grand gourmet logo" id="header_img">
                         <div id="header_title">Panier</div>
@@ -51,27 +30,27 @@
                 </div>
 
                 <div id='container_overflow'>
-                    <ul id="panier_container">
+                    <ul id="basket_container">
 
                         {% if items %}
                             
                         {% for item in items %}
 
-                            <li class="panier_card">
+                            <li class="basket_card">
                                 <h5>{{item.product.titre|capitalize}}</h5>
                                 <div id='TitreQuantiteDelete'>
                                     <div class="overall">
                                         <div class="form-group">
                                     
                                             <select style  class="form-control" name="qty" id="qty" data-id="{{ item.product.id }}" >
-                                            {% for i in 1..20 %}
+                                            {% for i in 1..10 %}
                                                 <option value='{{i}}' {{item.quantity == i ? 'selected' : ''}}>{{i}}</option>
                                             {% endfor %}
                                             
                                             </select>
                                         </div>
                                             <p class='QTYMultiplier'>x</p>
-                                            <div class="prix_panier">{{item.product.prix|number_format(2)}}€</div>
+                                            <div class="prix_basket">{{item.product.prix|number_format(2)}}€</div>
                                         </div>
                                         <a href="{{path('panier_supprimer', {'id' : item.product.id})}}"><i class="fa-solid fa-trash-can"></i></a>
                                     </div>
@@ -81,18 +60,18 @@
                         {% endfor %}
 
                     </ul>
-                    <div class="panier_total">
+                    <div class="basket_total">
                         <p>Total :</p>
                         <p>{{total}}€</p>
                     </div>
-                    <div id='panier_button_container'>
-                        <div id='panier_button'>
-                           <a id='panier_lien' href="{{path('app_paiement')}}"> Valider la commande <i class="fa-solid fa-arrow-right"></i></a>
+                    <div id='basket_button_container'>
+                        <div id='basket_button'>
+                           <a id='basket_lien' href="{{path('app_paiement')}}"> Valider la commande <i class="fa-solid fa-arrow-right"></i></a>
                         </div>
                     </div>
                     
                     {% else %}
-                        <p class='emptyPanier'>Le panier est vide</p>
+                        <p class='emptybasket'>Le panier est vide</p>
                     {% endif %}
                 </div>
             </div>
