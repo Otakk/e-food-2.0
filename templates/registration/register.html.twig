@@ -1,15 +1,9 @@
 {% block stylesheets %}
 	<link rel="stylesheet" href="{{'css/register.css'}}">
 {% endblock %}
-
-{% extends 'base.html.twig' %}
-
-{% block title %}S'inscrire | {{parent()}}{% endblock %}
-
-{% block body %}
-    <div id="register">
-        <div class="register_form">
-            <label>FORMULAIRE</label>
+    {# <div id="register"> #}
+        {# <div class="register_form">
+            <label>INSCRIPTION</label>
             {{ form_start(registrationForm) }}
 
             <div class="email">
@@ -37,6 +31,78 @@
             </div>
             
             {{ form_end(registrationForm) }}
+        </div> #}
+    {# </div> #}
+
+    <div id='register_form'>
+        {{ form_start(registrationForm) }}
+
+        <div class='register_row'>
+            <div class='input_container'>
+            <div class='form_icon'>
+                <i class="fa-solid fa-address-card fa-xl"></i>
+            </div>
+            {{ form_row(registrationForm.nom) }}
+            </div>
+
+            <div class='input_container'> 
+                <div class='form_icon'>
+                    <i class="fa-solid fa-address-card fa-xl"></i>
+                </div>
+                {{ form_row(registrationForm.prenom) }}
+            </div>
         </div>
+
+        <div class='register_row'>
+            <div class='input_container'>
+                <div class='form_icon'>
+                    <i class="fa-solid fa-at"></i>
+                </div>
+                {{ form_row(registrationForm.email) }}
+            </div>
+
+            <div class='input_container'>
+                <div class='form_icon'>
+                    <i class="fa-solid fa-key"></i>
+                </div>
+                {{ form_row(registrationForm.plainPassword) }}
+            </div>
+        </div>
+
+        <div class='register_row'>
+            <div class='input_container input_adresse'>
+                <div class='form_icon'>
+                    <i class="fa-solid fa-location-dot"></i>
+                </div>
+                {{ form_row(registrationForm.adresse) }}
+            </div>
+        </div>
+
+        <div class="register_row">
+            <div class='input_container'>
+                <div class='form_icon'>
+                    <i class="fa-solid fa-city"></i>
+                </div>
+                {{ form_row(registrationForm.code_postal, {label: 'Code postal'}) }}
+            </div>
+
+            <div class='input_container'>
+                <div class='form_icon'>
+                    <i class="fa-solid fa-phone"></i>
+                </div>
+                {{ form_row(registrationForm.num_telephone) }}
+            </div>
+        </div>
+
+        <div class="register_row sexe_fielset">
+            {{ form_row(registrationForm.sexe) }}
+        </div>
+
+        <div class='superior_btn_container'>
+            <div class='register_btn_container'>
+                <button type="submit" id="register_btn">Terminé</button>
+            </div>
+        </div>
+
+        {{ form_end(registrationForm) }}
     </div>
-{% endblock %}

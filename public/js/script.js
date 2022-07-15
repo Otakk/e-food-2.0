@@ -86,6 +86,60 @@ function slowAlert(dd) {
 }
 
 
+// login modal
+
+let open_login_modal = document.querySelector("#connexion");
+let background_modal = document.querySelector("#login_modal_container");
+let login_modal = document.querySelector("#login_modal");
+let register_modal = document.querySelector("#register_modal");
+let close_login_modal = document.querySelector("#close_login_modal_border");
+let close_register_modal = document.querySelector("#close_register_modal");
+let close_login_modal_bg = document.querySelectorAll(".WayToCloseModal");
+let click_here_login = document.querySelector("#click_here_login");
+let click_here_register = document.querySelector("#click_here_register");
+let isOpen2 = false;
+let delay = 1000;
+
+open_login_modal.addEventListener("click", function () {
+  background_modal.classList.add("active");
+  login_modal.classList.add("active");
+  document.body.style.overflow = "hidden";
+});
+
+close_login_modal.addEventListener("click", function () {
+  background_modal.classList.remove("active");
+  login_modal.classList.remove("active");
+  document.body.style.overflow = "initial";
+});
+
+close_register_modal.addEventListener("click", function () {
+  background_modal.classList.remove("active");
+  register_modal.classList.remove("active");
+});
+
+Array.from(close_login_modal_bg).forEach((e) => {
+  e.addEventListener("click", function () {
+    background_modal.classList.remove("active");
+    login_modal.classList.remove("active");
+    register_modal.classList.remove("active");
+    document.body.style.overflow = "initial";
+  });
+});
+
+click_here_login.addEventListener("click", function () {
+  login_modal.classList.remove("active");
+  setTimeout(function () {
+    register_modal.classList.add("active");
+  }, 600);
+});
+
+click_here_register.addEventListener("click", function () {
+  register_modal.classList.remove("active");
+  setTimeout(function () {
+    login_modal.classList.add("active");
+  }, 600);
+});
+
 // nav modal name
 
 let home_modal = document.querySelector("#modal");

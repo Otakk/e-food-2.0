@@ -14,6 +14,39 @@
         {% endblock %}
     </head>
     <body>
+
+         <div id="login_modal_container">
+
+            <div id='loginRegister_modal'>
+                <div class="WayToCloseModal"></div>
+                <div id="login_modal">
+                    <i id='close_login_modal' class="fa-solid fa-plus fa-2xl">
+                        <div id='close_login_modal_border'></div>
+                    </i>
+
+                    {% include "security/login.html.twig" %}
+
+                    <div id='login_modal_footer'>
+                        <div class="line"></div>
+                        <p>Pas encore inscrit(e) ?<span id='click_here_login'> Cliquez ici<span></p>
+                    </div>
+                </div>
+
+                <div id="register_modal">
+
+                    <div id='register_modal_footer'>
+                        <p>Déjà membre ?<span id='click_here_register'> Cliquez ici<span></p>
+                        <div class="line"></div>
+                    </div>
+                    <p class='h6'>S'inscrire</p>
+                    <i id='close_register_modal' class="fa-solid fa-plus fa-2xl">
+                        <div id='close_register_modal_border'></div>
+                    </i>
+                    {% include "registration/register.html.twig" %}
+                </div>
+                
+            </div> 
+        </div>
     
         <div id="basket_font"></div>
         <div class="basket">

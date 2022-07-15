@@ -33,7 +33,6 @@ class SecurityController extends AbstractController
                 "items" => $panier->getFullCart(),
                 "total" => $panier->getTotal(),
                 "categories" => $categorieRepository->findAll()
-
             ]
         );
     }
