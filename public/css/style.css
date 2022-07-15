@@ -123,6 +123,10 @@ nav > div {
   user-select: none; /* Propriété standard */
 }
 
+#connexion{
+  cursor: pointer !important;
+}
+
 #connexion:hover {
   color: #fec057;
 }

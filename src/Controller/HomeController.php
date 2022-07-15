@@ -2,16 +2,21 @@
 
 namespace App\Controller;
 
+use App\Entity\User;
 use App\Entity\Produit;
 use App\Service\Panier;
 use App\Entity\Categorie;
+use App\Form\RegistrationFormType;
 use App\Repository\MenuRepository;
 use App\Repository\ProduitRepository;
 use App\Repository\CategorieRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class HomeController extends AbstractController
 {
@@ -19,7 +24,7 @@ class HomeController extends AbstractController
      * 127.0.0.0:8000
      * @Route("/", name="app_home")
      */
-    public function index(ProduitRepository $produitRepository, CategorieRepository $categorieRepository,  MenuRepository $menuRepository, Panier $panier): Response
+    public function index(EntityManagerInterface $entityManager, UserPasswordHasherInterface $userPasswordHasher, Request $request, AuthenticationUtils $authenticationUtils, ProduitRepository $produitRepository, CategorieRepository $categorieRepository,  MenuRepository $menuRepository, Panier $panier): Response
     {
 
         /*
@@ -34,6 +39,30 @@ class HomeController extends AbstractController
         // Récuperer les menus de la bdd
         $menus = $menuRepository->findAll();
 
+        // get the login error if there is one
+        $error = $authenticationUtils->getLastAuthenticationError();
+        // last username entered by the user
+        $lastUsername = $authenticationUtils->getLastUsername();
+
+        // création d'un nouvel utilisateur
+        $user = new User();
+        $form = $this->createForm(RegistrationFormType::class, $user);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            // encode the plain password
+            $user->setPassword(
+            $userPasswordHasher->hashPassword(
+                    $user,
+                    $form->get('plainPassword')->getData()
+                )
+            );
+
+            $entityManager->persist($user);
+            $entityManager->flush();
+            // do anything else you need here, like send an email
+
+            return $this->redirectToRoute('app_login');
+        }
         /* 
             Envoyer la page Home avec les parametres suivant
             "produits" => tous les produits de la bdd
@@ -41,6 +70,8 @@ class HomeController extends AbstractController
             "categories" => tous les categorises de la bdd
             "items" => tous les produits du panier
             "total" => Le total du panier
+            "error" => si erreur alors l'affiche
+            "registrationForm" => vue du formulaire d'inscription
         */ 
 
         return $this->render('home/home.html.twig', [
@@ -48,8 +79,10 @@ class HomeController extends AbstractController
             "menus" => $menus,
             "categories" => $categorieRepository->findAll(),
             "items" => $panier->getFullCart(),
-            "total" => $panier->getTotal()
-
+            "total" => $panier->getTotal(),
+            'error' => $error,
+            'last_username' => $lastUsername,
+            'registrationForm' => $form->createView(),
         ]);
     }
 

@@ -71,7 +71,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private $code_postal;
 
     /**
-     * @ORM\Column(type="string", length=20)
+     * @ORM\Column(type="string", length=10)
      * @Assert\NotBlank(message="Veuillez saisir votre numéro de téléphone")
      */
     private $num_telephone;

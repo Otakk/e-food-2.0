@@ -108,6 +108,10 @@ nav > div > div {
   border-radius: 0 0 15px 15px;
 }
 
+#connexion{
+  cursor: pointer;
+}
+
 #connexion:hover {
   color: #fec057;
 }
