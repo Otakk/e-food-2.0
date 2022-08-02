@@ -10,12 +10,12 @@
 
 	<main>
 
-{% set recherche = app.request.get('search') %}
+	{% set recherche = app.request.get('search') %}
 
-{% if recherche | length  %}
-			<p style='font-size : 30px; font-family: "Paytone One";'>Résultat de la recherche :  {{recherche | length}} produits trouvé{{ recherche | length == 1 ? '' : 's' }}</p>
-	<div class='produit_container'>
-			<div class='card_container'>
+		{% if recherche | length  %}
+					<p style='font-size : 30px; font-family: "Paytone One";'>Résultat de la recherche :  {{recherche | length}} produits trouvé{{ recherche | length == 1 ? '' : 's' }}</p>
+			<div class='produit_container'>
+				<div class='card_container'>
 			
 					<div class='card_container_inner'>
 			
@@ -30,33 +30,28 @@
 								</div>
 
 								<span class="card_btn" id='{{ produit.id }}' onmouseover="mouseOver({{produit.id}})" onmouseout="mouseOut({{produit.id}})">
-                                    <img class='card_btn_img' src="{{asset('/images/rightArrow.png')}}">
-                                </span>
+									<img class='card_btn_img' src="{{asset('/images/rightArrow.png')}}">
+								</span>
 
-                                <div class="left_modal left_modal{{produit.id}}" >
+								<div class="left_modal left_modal{{produit.id}}" >
 
-                                    <button  onclick='window.location.href="{{path('panier_ajouter', {"id": produit.id})}}"' class="div_img d1">
-                                        <img src="{{asset('/images/add_cart.png')}}" class='add_cart viewMore' alt="ajouter au panier icon">
-                                    </button>
+									<button  onclick='window.location.href="{{path('panier_ajouter', {"id": produit.id})}}"' class="div_img d1">
+										<img src="{{asset('/images/add_cart.png')}}" class='add_cart viewMore' alt="ajouter au panier icon">
+									</button>
 
-                                     <button onclick='window.location.href="{{path('app_afficher', {"id": produit.id})}}"' class="div_img d2">
-                                        <i class="bi bi-eye-fill viewMore" class='add_cart'></i>
-                                    </button>
-                                </div>
+										<button onclick='window.location.href="{{path('app_afficher', {"id": produit.id})}}"' class="div_img d2">
+										<i class="bi bi-eye-fill viewMore" class='add_cart'></i>
+									</button>
+								</div>
 							</div>
 
 						{% endfor %}
 					</div>
-				
+				</div>
+					
 			</div>
-			
-			
-		</div>
 
-
-
-
-{% else %}
+		{% else %}
 	
 
 		<div class='produit_container'>
@@ -84,7 +79,7 @@
                                 <div class="left_modal left_modal{{produit.id}}" >
 
                                     <button  onclick='window.location.href="{{path('panier_ajouter', {"id": produit.id})}}"' class="div_img d1">
-                                        <img src="{{asset('/images/add_cart.png')}}" class='add_cart viewMore' alt="ajouter au panier icon">
+                                        <img src="{{asset('/images/icon-cart.svg')}}" class='add_cart viewMore' alt="ajouter au panier icon">
                                     </button>
 
                                      <button onclick='window.location.href="{{path('app_afficher', {"id": produit.id})}}"' class="div_img d2">
@@ -102,6 +97,7 @@
 				<div class="categorie">
 					<ul>
 						<li id='categorie_title'>Catégorie</li>
+
 						{% for categorie in categories %}	
 						<li>
 							<a id="return" class='categorie_link' href="{{path('app_categorie', {"id": categorie.id})}}">{{categorie.titre}}</a>
@@ -113,8 +109,9 @@
 			</div>
 		</div>
 
-{% endif %}
+	{% endif %}
 	</main>
+
 	{% include "footer.html.twig" %}
 
 	<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>

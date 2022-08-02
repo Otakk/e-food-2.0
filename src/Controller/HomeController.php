@@ -11,6 +11,7 @@ use App\Repository\MenuRepository;
 use App\Repository\ProduitRepository;
 use App\Repository\CategorieRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\ORM\Mapping\Id;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -97,7 +98,6 @@ class HomeController extends AbstractController
 
         $search = $request->get('search');
 
-
         // Si l'utilisateur a saisie un mot
         if ($search) {
 
@@ -106,7 +106,7 @@ class HomeController extends AbstractController
                 findFilter($search) ; fonction créer dans ProduitRepository Class
             */
             $produitsResult = $produitRepository->findFilter($search);
-            // Si le nombre d'enregistrement trouvé et supperieur a 0
+            // Si le nombre d'enregistrement trouvé et supperieur à 0
             if (count($produitsResult) > 0) {
                 // On affect le resultat obtenu au variable $produits
                 $produits = $produitsResult;
@@ -114,7 +114,6 @@ class HomeController extends AbstractController
                 // Sinon recuper tous les produit
                 $produits = $produitRepository->findAll();
             }
-
 
         } else {
             $produits = $produitRepository->findAll();
@@ -126,13 +125,11 @@ class HomeController extends AbstractController
         // Obtenir tous les menus
         $menus = $menuRepository->findAll();
 
-
-
         /* 
             Envoyer la page produit avec les parametres suivant
             "produits" => tous les produits de la bdd
             "menus" => tous les menus de la bdd
-            "categories" => tous les categorises de la bdd
+            "categories" => tous les categories de la bdd
             "items" => tous les produits du panier
             "total" => Le total du panier
         */ 
@@ -163,18 +160,38 @@ class HomeController extends AbstractController
     }
 
     /**
-     * @Route("/categorie/{id}",name="app_categorie")
+     * @Route("/categorie/{id}", name="app_categorie")
      */
     public function categorie(Categorie $categorie, CategorieRepository $categorieRepository, Panier $panier)
     {
-        // Recuperer tous les produit d'une categorie avec son ID passé en parametre
+        // Recuperer tous les produit d'une categorie avec son ID passé en paramètre
 
         $produits = $categorie->getProduits();
+        $categories = $categorieRepository->findAll();
 
         return $this->render('home/categorie.html.twig', [
             "produits" => $produits,
             "categorie" => $categorie,
-            "categories" => $categorieRepository->findAll(),
+            "categories" => $categories,
+            "items" => $panier->getFullCart(),
+            "total" => $panier->getTotal()
+        ]);
+    }
+
+     /**
+     * @Route("/categories", name="app_AllCategorie")
+     */
+    public function All_categorie(CategorieRepository $categorie, CategorieRepository $categorieRepository, ProduitRepository $produitRepository, Panier $panier )
+    {
+        // Recuperer tous les categories
+       
+        $produits = $produitRepository->findAll();
+        $categories = $categorieRepository->findAll();
+
+        return $this->render('home/categories.html.twig', [
+            "produits" => $produits,
+            "categorie" => $categorie,
+            "categories" => $categories,
             "items" => $panier->getFullCart(),
             "total" => $panier->getTotal()
         ]);

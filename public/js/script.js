@@ -60,7 +60,6 @@ Array.from(qty).forEach((element) => {
   element.addEventListener("change", function () {
     var id = element.getAttribute("data-id");
 
-    console.log(this.value);
     window.location.href = `/panier/update/${id}/${parseInt(this.value)}`;
   });
 });
@@ -70,24 +69,45 @@ Array.from(qty).forEach((element) => {
 function mouseOver(id) {
   let dd = document.querySelector(`.left_modal${id}`);
   dd.style.right = "-60px";
-  dd.style.transition ='ease-in-out 250ms'
+  dd.style.transition ='ease-in-out 150ms'
 }
 
 function mouseOut(id) {
   let dd = document.querySelector(`.left_modal${id}`);
- 
-  setTimeout(slowAlert(dd), 20000)
- 
+  setTimeout(() => { slowAlert(dd) } , 2000)
 }
+
 
 function slowAlert(dd) {
   dd.style.right = "-5px";
-  dd.style.transition ="ease-in-out 5000ms"
+  dd.style.transition ="ease-in-out 350ms"
 }
 
 
-// login modal
+// nav modal name
 
+document.addEventListener('DOMContentLoaded', function() {
+  let home_modal = document.querySelector("#modal");
+  let open_modal = document.querySelector("#dropdown");
+  let cartContainer = document.querySelector(".cart_container");
+  let isAuthenticated = cartContainer.dataset.isAuthenticated;
+  let isOpen = false;
+
+  if (isAuthenticated ) {
+        open_modal.addEventListener("click", function () {
+      if (isOpen == false) {
+        home_modal.style.display = "flex";
+        isOpen = true;
+      } else {
+        home_modal.style.display = "none";
+        isOpen = false;
+      }
+    });
+  }
+});
+
+
+// login modal
 let open_login_modal = document.querySelector("#connexion");
 let background_modal = document.querySelector("#login_modal_container");
 let login_modal = document.querySelector("#login_modal");
@@ -140,18 +160,4 @@ click_here_register.addEventListener("click", function () {
   }, 600);
 });
 
-// nav modal name
 
-let home_modal = document.querySelector("#modal");
-let open_modal = document.querySelector("#dropdown");
-let isOpen = false;
-
-open_modal.addEventListener("click", function () {
-  if (isOpen == false) {
-    home_modal.style.display = "flex";
-    isOpen = true;
-  } else {
-    home_modal.style.display = "none";
-    isOpen = false;
-  }
-});

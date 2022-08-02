@@ -1,4 +1,5 @@
 <footer> 
+    <div id="footer_container">
         <div id="left_footer">
             <p id="footer_title">Le grand gourmet</p>
             <p id="footer_text">est un restaurant qui répond à chacune de vos attentes. Nous somme une petite équipe de restaurateur armoureux de la bonne cuisine, dévoué à vous faire gouter des plats à un raport qualité/prix inégalable. Commandé et découvré par vous même ! Ouvert 7j/7 de 11h à 1h du matin.</p>
@@ -11,7 +12,7 @@
             <div id="footer_link">
             <a class="foot_link" href="{{path('app_home')}}">Home</a>
             <a class="foot_link" href="#">Catégorie</a>
-            <a class="foot_link" href="#">Profil</a>
+            <a class="foot_link" href="{{path('profile_index')}}">Profil</a>
             <a class="foot_link" href="#">Paramètres</a>
         </div> 
         
@@ -20,4 +21,5 @@
             <a href="https://twitter.com/?lang=fr"><img src="{{asset('images/icon-twitter.svg')}}" alt="facebook icon"></a>
             <a href="https://www.instagram.com/?hl=fr"><img src="{{asset('images/icon-instagram.svg')}}" alt="facebook icon"></a>
         </div>
-    </footer>
+    </div>
+</footer>

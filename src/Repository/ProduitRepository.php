@@ -75,7 +75,6 @@ class ProduitRepository extends ServiceEntityRepository
     }
     */
 
-
     // Fonction pour la recherche 
 
     public function findFilter($filter)
@@ -102,6 +101,5 @@ class ProduitRepository extends ServiceEntityRepository
         return $query
         ->getQuery()
         ->getResult();
-            
     }
 }

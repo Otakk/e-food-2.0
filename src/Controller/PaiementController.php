@@ -32,8 +32,6 @@ class PaiementController extends AbstractController
         // Ajouter la clé secret du stripe (Mettre votre propre clef secret de test)
         Stripe::setApiKey('sk_test_51L7f3JKWD0dldeto6R0xzbZiDNrj9PIEO0mT6MTOhucaw5jW1mZjdzeB87IWEPOnpfeXilXoi2Fs41v2p5dI4JVm00rz5WZ9KU');
         
-        // 9.46min +90xp victoire
-
 
         /* https://stripe.com/docs/payments/payment-intents
         

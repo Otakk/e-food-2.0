@@ -13,6 +13,10 @@
 
 						<ul id='modal_categorie'>	
 
+							<li>
+								<a class='modal_btn_categorie'  href="{{path('app_AllCategorie')}}">Voir tout</a>
+							</li>
+							
 							{% for categorie in categories %}
 								
 							<li class='div_modal_hover_categorie'>
@@ -78,7 +82,7 @@
 					<a class='marge' id='connexion'>Connexion</a>
 				{% endif %}
 
-				<a class='marge cart_container'>
+				<a class='marge cart_container' data-is-authenticated="{{ app.user ? 'true'}}">
 					<i id="cart" class="fa-solid fa-2xl fa-basket-shopping"></i>
 				</a>
 				
