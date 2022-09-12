@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block body %}
-	<div class="container mt-2">
+	<div class="container mt-5">
 		<h1>Liste des menus</h1>
 		{% for message in app.flashes('success') %}
 
@@ -17,7 +17,7 @@
 				<script>
 					var div1 = document.getElementById('alertMessage');
 
-showMessage(div1.innerHTML)
+					showMessage(div1.innerHTML)
 				</script>
 
 			{% endblock %}
@@ -63,7 +63,7 @@ showMessage(div1.innerHTML)
 					</tr>
 				{% else %}
 					<tr>
-						<td colspan="4">no records found</td>
+						<td colspan="7">Pas de menu crée</td>
 					</tr>
 				{% endfor %}
 			</tbody>

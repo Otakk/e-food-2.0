@@ -1,22 +1,29 @@
 <nav>
+
 	<div id="theBigOne">
 		<div class='nav'>
 			<img id='logo' src="{{asset('images/logo.png')}}" alt="le grand gourmet logo">
 			<div id='nav_left'>
+
 				<a class='marge' href="{{path('app_home')}}">Home</a>
+
 				<div id='categorie'>
 					<p class='nav_link'>Catégorie</p>
+
 					<div id="dropdown_categorie">
 						<i id='drop' class="fa-solid fa-caret-down"></i>
 					</div>
+
 					<div id='modal_categorie'>
+
 						{% for categorie in categories %}
 
 							<div class='div_modal_hover_categorie'>
 								<a class='modal_btn_categorie' href="{{path('app_categorie', {'id': categorie.id})}}">{{categorie.titre}}</a>
-
 							</div>
+
 						{% endfor %}
+
 					</div>
 				</div>
 			</div>

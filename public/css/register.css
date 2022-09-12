@@ -101,7 +101,6 @@ h6,.h6{
   box-shadow: 0 0 5px #85b975;
   transition: all 600ms ease-in-out;
   z-index: 998;
-  width: 500px;
 }
 
 #register_modal.active {

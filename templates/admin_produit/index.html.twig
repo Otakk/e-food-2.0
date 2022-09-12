@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block body %}
-	<div class="container mt-2">
+	<div class="container mt-5">
 		<h1 class="text-center">Liste des produits</h1>
 		{% for message in app.flashes('success') %}
 			<div class="alert alert-success col-8 mx-auto text-center my-4 d-none" id="alertMessage">
@@ -14,8 +14,7 @@
 			{% block javascripts %}
 				<script>
 					var div1 = document.getElementById('alertMessage');
-
-showMessage(div1.innerHTML)
+					showMessage(div1.innerHTML)
 				</script>
 
 			{% endblock %}
@@ -37,6 +36,7 @@ showMessage(div1.innerHTML)
 				</tr>
 			</thead>
 			<tbody>
+
 				{% for produit in produits %}
 					<tr>
 						<td>{{ produit.id }}</td>
@@ -62,15 +62,12 @@ showMessage(div1.innerHTML)
 						<td>
 							{{ include('admin_produit/_delete_form.html.twig') }}
 						</td>
-
 					</tr>
-
-
 					
 				{% else %}
-					<tr>
-						<td colspan="6">Pas de données disponilbe
-						</td>
+					<tr
+						colspan="6">Pas de données disponible
+
 					</tr>
 				{% endfor %}
 
@@ -78,8 +75,8 @@ showMessage(div1.innerHTML)
 		</table>
 
         <div class="navigation d-flex justify-content-center mt-5">
-						{{ knp_pagination_render(produits) }}
-					</div>
+			{{ knp_pagination_render(produits) }}
+		</div>
 	</div>
 
 {% endblock %}

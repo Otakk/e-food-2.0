@@ -8,14 +8,12 @@
 
 {% block body %}
 
-	
-
 	<main>
 		<div class='produit_container'>
 
 			<div class='card_container'>
 
-					<h6>Nos {{categorie.titre}}s :</h6>
+					<h6>Nos {{categorie.titre}} :</h6>
 					<div class='card_container_inner'>
 
 						{% for produit in categorie.produits %}
@@ -35,7 +33,7 @@
                                 <div class="left_modal left_modal{{produit.id}}" >
 
                                     <button  onclick='window.location.href="{{path('panier_ajouter', {"id": produit.id})}}"' class="div_img d1">
-										<img src="{{asset('/images/add_cart.png')}}" class='add_cart viewMore' alt="ajouter au panier icon">
+										<img src="{{asset('/images/cart.png')}}" class='add_cart viewMore' alt="ajouter au panier icon">
                                     </button>
 
 									<button onclick='window.location.href="{{path('app_afficher', {"id": produit.id})}}"' class="div_img d2">

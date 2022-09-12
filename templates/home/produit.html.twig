@@ -13,7 +13,7 @@
 	{% set recherche = app.request.get('search') %}
 
 		{% if recherche | length  %}
-					<p style='font-size : 30px; font-family: "Paytone One";'>Résultat de la recherche :  {{recherche | length}} produits trouvé{{ recherche | length == 1 ? '' : 's' }}</p>
+			<p style='font-size : 30px; font-family: "Paytone One";'>Résultat de la recherche :  {{recherche | length}} produits trouvé{{ recherche | length == 1 ? '' : 's' }}</p>
 			<div class='produit_container'>
 				<div class='card_container'>
 			
