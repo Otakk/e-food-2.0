@@ -829,24 +829,6 @@ h5 {
 #basket_button:hover > a {
   color: #fec057;
 }
-/* 
-@keyframes basket {
-  0% {
-    transform: scaleX(0);
-  }
-  100% {
-    transform: scaleX(1);
-  }
-}
-
-@keyframes basketclose {
-  100% {
-    transform: scaleX(1);
-  }
-  0% {
-    transform: scaleX(0);
-  }
-} */
 
 @media screen and (max-width: 1280px) {
   /* nav */
@@ -1011,7 +993,7 @@ h5 {
   }
 
   #gourmet_img {
-    height: 150px;
+    height: 200px;
     margin-bottom: 10px;
     margin-top: 40px;
   }
@@ -1029,7 +1011,7 @@ h5 {
   }
 
   #gourmet_img {
-    height: 150px;
+    height: 200px;
     margin-bottom: 10px;
     margin-top: 10px;
   }
@@ -1043,7 +1025,7 @@ h5 {
   }
 }
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 860px) {
   /* nav */
 
   #theInnerOne,
@@ -1155,10 +1137,9 @@ h5 {
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    width: 50%;
+    width: 100%;
     height: 80px;
     color: #191919;
-    transform: translateX(50%);
     padding: 15px 0 15px 0;
     height: fit-content;
   }
@@ -1230,7 +1211,7 @@ h5 {
 
 @media screen and (max-height: 685px) {
   #gourmet_img{
-    height: 150px;
+    height: 200px;
   }
 }
 
@@ -1306,7 +1287,7 @@ h5 {
   }
 
   #gourmet_img {
-    height: 150px;
+    height: 200px;
     margin-bottom: 10px;
     margin-top: 10px;
   }
